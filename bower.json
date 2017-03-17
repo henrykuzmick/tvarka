@@ -1,0 +1,28 @@
+{
+  "name": "tvarka",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Henry Kuzmick <henry.kuzmick@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularfire": "^2.0.1",
+    "firebase": "^3.2.1",
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.0",
+    "angular-ui": "^0.4.0",
+    "angular-loading-bar": "^0.9.0",
+    "angular-file-model": "^0.3.1",
+    "angular-wysiwyg": "^1.2.4"
+  }
+}

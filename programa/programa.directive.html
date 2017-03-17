@@ -1,0 +1,14 @@
+<div ng-controller="programaCtrl as programa" class="programa">
+  <div class="col-xs-4 nopad">
+    <div class="programa-item" ng-repeat="item in programa.programaItems" ng-if="$index % 3 == 0">
+      <img src="{{ item.foto}} "/>
+      <div class="programa-name">
+        <h2>{{ item.pavadinimas }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-4 nopad">
+  </div>
+  <div class="col-xs-4 nopad">
+  </div>
+</div>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html ng-app="adminApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tvarka ir Teisingumas</title>
+	<link rel="shortcut icon" href="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/lumen/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="admin.css">
+	<!--[if IE]>
+	<script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<style>
+		.ng-cloak {
+			display: none !important
+		}
+	</style>
+</head>
+
+<body ng-controller="mainAdminCtrl">
+	<div ng-show="!loggedin" class="ng-cloak">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-sm-offset-3" style="margin-top: 200px">
+					<form ng-submit="login()">
+						<div class="form-group">
+							<label>Email: </label>
+							<input type="email" class="form-control" ng-model="admemail" placeholder="email">
+						</div>
+						<div class="form-group">
+							<label>Password: </label>
+							<input type="password" class="form-control" ng-model="admpassword" placeholder="pasword">
+						</div>
+						<button type="submit" class="btn btn-success btn-lg">
+							 Login
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="loggedin" class="ng-cloak">
+	  <div class="container-fluid">
+	  	<div class="row">
+	      <div class="col-xs-6" ng-controller="progCtrl">
+	        <h1>Rinkiminė Programa</h1>
+	        <table class="table table-striped table-bordered">
+	          <tr>
+	            <th><strong>Foto</strong></th>
+	            <th><strong>Pavadinimas</strong></th>
+	            <th><strong>Veiksmai</strong></th>
+	          </tr>
+	          <tr ng-repeat="pr in programa">
+	            <td><img src="{{ pr.foto }}"></td>
+	            <td><h4>{{ pr.pavadinimas }}</h4></td>
+	            <td>
+	              <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#programaModal" ng-click="redaguoti(pr)">Redaguoti</button>
+	              <br><br>
+	              <div class="btn btn-danger btn-md" ng-click="removePrograma(pr)">Trinti</div>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td colspan="3">
+	              <div class="row">
+	                <div class="col-xs-12">
+	                  <h3>Pridėti</h3>
+	                  <form ng-submit="addPrograma()">
+	                    <div class="row">
+	                      <div class="col-xs-6">
+	                        <div class="form-group">
+	                          <label>Pavadinimas: </label>
+	                          <input type="text" class="form-control" ng-model="pavadinimas" placeholder="Pavadinimas">
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-6">
+	                        <div class="form-group">
+	                          <label>Foto: </label>
+	                          <input type="file" class="form-control" file-model='fileModel' >
+	                        </div>
+	                      </div>
+												<div class="col-xs-12">
+	                        <div class="form-group">
+	                          <label>PDF: </label>
+	                          <input type="file" class="form-control" file-model='fileModel2' >
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-12">
+	                        <div class="form-group">
+	                          <label>Aprašymas: </label>
+	                          <wysiwyg textarea-id="txtapr" textarea-name="aprasymas" textarea-class="form-control" enable-bootstrap-title="true" textarea-menu="customMenu" ng-model="aprasymas"></wysiwyg>
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-12">
+	                        <button type="submit" class="btn btn-success btn-lg" ng-class="{ 'disabled': loading}">
+														<span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Submit
+													</button>
+	                      </div>
+	                    </div>
+	                  </form>
+	                </div>
+	              </div>
+	            </td>
+	          </tr>
+	        </table>
+					<!-- Modal -->
+					<div class="modal fade" id="programaModal" tabindex="-1" role="dialog" aria-labelledby="programaModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-lg" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					        <h4 class="modal-title" id="myModalLabel">Redaguoti</h4>
+					      </div>
+					      <div class="modal-body">
+					        <form ng-submit="updatePrograma()">
+										<div class="row">
+											<div class="col-xs-6">
+												<div class="form-group">
+													<label>Pavadinimas: </label>
+													<input type="text" class="form-control" ng-model="redPrograma.pavadinimas">
+												</div>
+											</div>
+											<div class="col-xs-6">
+												<div class="form-group">
+													<label>Foto: </label>
+													<input type="file" class="form-control" file-model='redPrograma.fileModel' >
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="form-group">
+													<label>PDF: </label>
+													<input type="file" class="form-control" file-model='redPrograma.fileModel2' >
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="form-group">
+													<label>Aprašymas: </label>
+													<wysiwyg textarea-id="txtapr" textarea-name="aprasymas" textarea-class="form-control" enable-bootstrap-title="true" textarea-menu="customMenu" ng-model="redPrograma.aprasymas"></wysiwyg>
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<button type="submit" class="btn btn-success btn-lg" ng-class="{ 'disabled': loading}">
+													<span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Submit
+												</button>
+											</div>
+										</div>
+									</form>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+	      </div>
+
+	      <div class="col-xs-6" ng-controller="vardaiCtrl">
+	        <h1>Nariai</h1>
+	        <table class="table table-striped table-bordered">
+						<thead>
+		          <tr>
+		            <th><strong>Foto</strong></th>
+		            <th><strong>Vardas</strong></th>
+		            <th><strong>Veiksmai</strong></th>
+		          </tr>
+						</thead>
+						<tbody ui:sortable ng-model:"vardai">
+		          <tr ng-repeat="v in vardai">
+		            <td><img src="{{ v.foto }}"></td>
+		            <td><h4>{{ v.vardas }}</h4></td>
+		            <td>
+		              <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#vardaiModal" ng-click="redaguoti(v)">Redaguoti</button>
+		              <br><br>
+		              <div class="btn btn-danger btn-md" ng-click="removeVardas(v)">Trinti</div>
+		            </td>
+		          </tr>
+						</tbody>
+	          <tr>
+	            <td colspan="3">
+	              <div class="row">
+	                <div class="col-xs-12">
+	                  <h3>Pridėti</h3>
+	                  <form ng-submit="addVardas()">
+	                    <div class="row">
+	                      <div class="col-xs-6">
+	                        <div class="form-group">
+	                          <label>Vardas: </label>
+	                          <input type="text" class="form-control" ng-model="vardas" placeholder="Vardas, Pavardė">
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-6">
+	                        <div class="form-group">
+	                          <label>Apygarda: </label>
+	                          <input type="text" class="form-control" ng-model="apygarda" placeholder="Apygarda">
+	                        </div>
+	                      </div>
+												<div class="col-xs-12">
+	                        <div class="form-group">
+	                          <label>Facebook: </label>
+	                          <input type="text" class="form-control" ng-model="facebook" placeholder="Facebook">
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-12">
+	                        <div class="form-group">
+	                          <label>Foto: </label>
+	                          <input type="file" class="form-control" file-model='fileModel' >
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-12">
+	                        <div class="form-group">
+	                          <label>Biografija: </label>
+														<wysiwyg textarea-id="txtbio" textarea-name="biografija" textarea-class="form-control" enable-bootstrap-title="true" textarea-menu="customMenu" ng-model="biografija"></wysiwyg>
+	                        </div>
+	                      </div>
+	                      <div class="col-xs-12">
+	                        <button type="submit" class="btn btn-success btn-lg" ng-class="{ 'disabled': loading}">
+														<span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Submit
+													</button>
+	                      </div>
+	                    </div>
+	                  </form>
+	                </div>
+	              </div>
+	            </td>
+	          </tr>
+	        </table>
+					<!-- Modal -->
+					<div class="modal fade" id="vardaiModal" tabindex="-1" role="dialog" aria-labelledby="vardaiModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="vardaiModalLabel">Redaguoti</h4>
+								</div>
+								<div class="modal-body">
+									<form ng-submit="updateVardas()">
+										<div class="row">
+											<div class="col-xs-6">
+												<div class="form-group">
+													<label>Vardas: </label>
+													<input type="text" class="form-control" ng-model="redVardas.vardas" placeholder="Vardas, Pavardė">
+												</div>
+											</div>
+											<div class="col-xs-6">
+												<div class="form-group">
+													<label>Apygarda: </label>
+													<input type="text" class="form-control" ng-model="redVardas.apygarda" placeholder="Apygarda">
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="form-group">
+													<label>Facebook: </label>
+													<input type="text" class="form-control" ng-model="redVardas.facebook" placeholder="Facebook">
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="form-group">
+													<label>Foto: </label>
+													<input type="file" class="form-control" file-model='redVardas.fileModel' >
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<div class="form-group">
+													<label>Biografija: </label>
+													<wysiwyg textarea-id="txtbio" textarea-name="biografija" textarea-class="form-control" enable-bootstrap-title="true" textarea-menu="customMenu" ng-model="redVardas.biografija"></wysiwyg>
+												</div>
+											</div>
+											<div class="col-xs-12">
+												<button type="submit" class="btn btn-success btn-lg" ng-class="{ 'disabled': loading}">
+													<span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Submit
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+	      </div>
+	  	</div>
+	  </div>
+	</div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"   integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="   crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+	<script src="bootstrap-colorpicker-module.js"></script>
+  <script src="admin.js"></script>
+  <script>
+	  var config = {
+			apiKey: "AIzaSyBty2ZBR1cNhMS7RDa_IBdw9xb2JdIh-S4",
+	    authDomain: "tit-programa.firebaseapp.com",
+	    databaseURL: "https://tit-programa.firebaseio.com",
+	    storageBucket: "tit-programa.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+		// $('#txtbio').wysihtml5();
+		// $('#txtapr').wysihtml5();
+
+  </script>
+</body>
+</html>

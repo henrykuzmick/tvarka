@@ -1,0 +1,57 @@
+.vardai
+  width: 100%
+  display: block
+  padding: 0
+  margin-bottom: 0
+  .vardai-item
+    width: 33.333%
+    display: inline-block
+    list-style-type: none
+    margin-bottom: 50px
+    margin-top: 50px
+    position: relative
+    vertical-align: top
+    @media screen and (max-width: $screen-sm-max)
+      width: 50%
+      padding-left: 5px
+      padding-right: 5px
+      margin-top: 15px
+      margin-bottom: 15px
+    &::after
+      content: ""
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+      background-color: transparent
+      -webkit-transition: ease-out 0.3s
+      -o-transition: ease-out 0.3s
+      transition: ease-out 0.3s
+      pointer-events: none
+    &.grey
+      &::after
+        background-color: rgba($light-grey, 0.8)
+    &:hover
+      .picture
+        border: 4px solid $yellow
+      &::after
+        background-color: transparent
+    &.selected
+      .picture
+        border: 4px solid $yellow
+    .picture
+      width: 100%
+      max-width: 193px
+      border-radius: 100%
+      cursor: pointer
+      border: 4px solid transparent
+      width: auto
+      display: inline-block
+      overflow: hidden
+      -webkit-transition: ease-out 0.3s
+      -o-transition: ease-out 0.3s
+      transition: ease-out 0.3s
+      cursor: pointer
+      img
+        width: 100%

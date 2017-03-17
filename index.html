@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html ng-app="tvarkaApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tvarka ir Teisingumas</title>
+	<link rel="shortcut icon" href="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="main.css">
+	<!--[if IE]>
+	<script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73690038-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<body>
+<nav class="navbar" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">
+				<div class="logo"></div>
+			</a>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav pull-right">
+				<li><a href="http://www.tvarka.lt/lt/naujienos">Naujienos</a></li>
+				<li><a href="http://tvarka.lt/lt/pirmininkas">Pirmininkas</a></li>
+				<li><a href="http://tvarka.lt/lt/apie-mus">Apie mus</a></li>
+				<li><a href="http://tvarka.lt/lt/musu-atstovai">Mūsų atstovai</a></li>
+				<li><a href="http://tvarka.lt/lt/musu-institucijos">Mūsų institucijos</a></li>
+				<li><a href="http://tvarka.lt/lt/renginiai">Renginiai</a></li>
+				<li class="navbtn"><a href="http://tvarka.lt/lt/kaip-tapti-nariu">Kaip tapti nariu</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 blueline">
+			<h1>Siekiai ir siūlymai Lietuvos programai (2017 - 2020)</h1>
+		</div>
+	</div>
+	<div class="row text-center programaRow" ng-controller="programaCtrl">
+		<div programa programa-items="programaItems" class='programa'></div>
+	</div>
+	<!-- <div class="row">
+		<div class="col-xs-12 blueline">
+			<h1>Mūsų kandidatai vienmandatėse rinkimų apygardose</h1>
+		</div>
+	</div> -->
+	<div class="row">
+		<div class="col-xs-12 whiteline">
+			<h1 class="blue">Jūsų teisingos ateities vardai</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 text-center nopad grey">
+			<vardai></vardai>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 text-center nopad grey">
+			<div id="footer">
+				<h1>Junkitės prie mūsų ir padėkim Lietuvai kartu</h1>
+				<div class="button">Užpidlykite nario anketą</div>
+				<div class="darker">
+					<p>Partija Tvarka ir Teisingumas 2016</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 blueline">
+			<h1>Mūsų kandidatų sąrašas daugiamandatėje rinkimų apygardoje</h1>
+		</div>
+	</div>
+	<div class="row grey">
+		<div class="container listas">
+			<div class="row">
+				<div class="col-xs-12 col-md-6 col-lg-3">
+					<ul>
+						<li>1. Remigijus Žemaitaitis</li>
+						<li>2. Kęstas Komskis</li>
+						<li>3. Rimas Andrikis</li>
+						<li>4. Petras Gražulis</li>
+						<li>5. Vytautas Kamblevičius</li>
+						<li>6. Rimas Antanas Ručys</li>
+						<li>7. Juozas Imbrasas</li>
+						<li>8. Ona Valiukevičiūtė</li>
+						<li>9. Kęstutis Bartkevičius</li>
+						<li>10. Kęstutis Pūkas</li>
+						<li>11. Artūras Razbadauskas</li>
+						<li>12. Almantas Petkus</li>
+						<li>13. Algimantas Dumbrava</li>
+						<li>14. Kęstutis Trečiokas</li>
+						<li>15. Romualdas Visokavičius</li>
+						<li>16. Audronė Galvonaitė</li>
+						<li>17. Andrius Šedžius</li>
+						<li>18. Natalja Istomina</li>
+						<li>19. Vidmantas Karabinas</li>
+						<li>20. Loreta Jakinevičienė</li>
+						<li>21. Julius Panka</li>
+						<li>22. Romualdas Gėgžnas</li>
+						<li>23. Vidmantas Macevičius</li>
+						<li>24. Dobilas Sinkevičius</li>
+						<li>25. Aušra Ručienė</li>
+						<li>26. Vytautas Jucius</li>
+						<li>27. Egidijus Skarbalius</li>
+						<li>28. Gediminas Onaitis</li>
+						<li>29. Julius Morkūnas</li>
+						<li>30. Algirdas Genevičius</li>
+						<li>31. Raimundas Martinėlis</li>
+						<li>32. Saulius Arlauskas</li>
+						<li>33. Ryšardas Burda</li>
+						<li>34. Gediminas Rudžionis</li>
+						<li>35. Nina Šesternikova</li>
+						<li>36. Gintaras Šurkus</li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-md-6 col-lg-3">
+					<ul>
+						<li>37. Silverijus Statkus</li>
+						<li>38. Lina Šukytė</li>
+						<li>39. Albinas Žymančius</li>
+						<li>40. Kęstutis Komskis</li>
+						<li>41. Donatas Mizaras</li>
+						<li>42. Svetlana Babujeva</li>
+						<li>43. Sigitas Činga</li>
+						<li>44. Osvaldas Katinas</li>
+						<li>45. Algirdas Meiženis</li>
+						<li>46. Edita Rudienė</li>
+						<li>47. Stasys Vainauskas</li>
+						<li>48. Martynas Gedvilas</li>
+						<li>49. Valerijonas Bernotas</li>
+						<li>50. Vaidas Bendaravičius</li>
+						<li>51. Edgaras Bernotas</li>
+						<li>52. Audronė Beresnevičienė</li>
+						<li>53. Jūratė Šivickienė</li>
+						<li>54. Vincas Metrikis</li>
+						<li>55. Raimonda Karosaitė</li>
+						<li>56. Gediminas Imbrasas</li>
+						<li>57. Tomas Valašinas</li>
+						<li>58. Loreta Macionienė</li>
+						<li>59. Asta Lašinskienė</li>
+						<li>60. Rytis Jankauskas</li>
+						<li>61. Daiva Urbonavičiūtė</li>
+						<li>62. Henrikas Mackela</li>
+						<li>63. Daiva Juknevičienė</li>
+						<li>64. Giedrius Zdanys</li>
+						<li>65. Vytautas Žagūnis</li>
+						<li>67. Kazimieras Dura</li>
+						<li>68. Marius Juškevičius</li>
+						<li>69. Kęstutis Vilniškis</li>
+						<li>70. Sigitas Stonys</li>
+						<li>71. Franc Jakubovskij</li>
+						<li>72. Artūras Galakvoščius</li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-md-6 col-lg-3">
+					<ul>
+						<li>73. Audronė Virganavičiūtė</li>
+						<li>74. Romualdas Dumčius</li>
+						<li>75. Sigitas Sidaravičius</li>
+						<li>76. Algirdas Cegelis</li>
+						<li>77. Jurgita Sadauskaitė</li>
+						<li>78. Renat Bralkovskij</li>
+						<li>80. Agnė Petravičienė</li>
+						<li>81. Tadas Bartkus</li>
+						<li>82. Tadas Grundulas</li>
+						<li>83. Dalia Skeberdienė</li>
+						<li>84. Algirdas Gudaitis</li>
+						<li>85. Jurgita Šeržentienė</li>
+						<li>86. Algis Kaleinikas</li>
+						<li>87. Ignas Jonušas</li>
+						<li>88. Algimantas Adomaitis</li>
+						<li>89. Aurimas Pileckas</li>
+						<li>90. Juozas Jokimas</li>
+						<li>91. Ilona Gylytė</li>
+						<li>92. Ginta Baltag</li>
+						<li>93. Petras Beresnevičius</li>
+						<li>95. Vincas Jonas Karčiauskas</li>
+						<li>96. Kristina Smirnovaitė</li>
+						<li>97. Benediktas Paulauskas</li>
+						<li>98. Natalija Babelčius</li>
+						<li>99. Regina Čistiakova</li>
+						<li>100. Danius Kanauka</li>
+						<li>101. Lorena Balsė</li>
+						<li>102. Andrius Jurkus</li>
+						<li>103. Arvydas Aželis</li>
+						<li>104. Vida Narbutienė</li>
+						<li>105. Julija Melnikova</li>
+						<li>106. Irena Gailiutė</li>
+						<li>107. Virginija Tumėnienė</li>
+						<li>108. Marytė Žukienė</li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-md-6 col-lg-3">
+					<ul>
+						<li>109. Juozas Rokas</li>
+						<li>110. Ona Petronienė</li>
+						<li>111. Stanislovas Vėlavičius</li>
+						<li>112. Egidijus Mickevičius</li>
+						<li>113. Aleksandras Filipavičius</li>
+						<li>114. Raimondas Bitinas</li>
+						<li>116. Vytautas Škadauskas</li>
+						<li>117. Modestas Stramkauskas</li>
+						<li>118. Rima Petruškienė</li>
+						<li>119. Rimvydas Anusauskas</li>
+						<li>120. Ignas Nastaravičius</li>
+						<li>121. Gintaras Algirdas Kalėda</li>
+						<li>122. Kęstutis Urbanavičius</li>
+						<li>123. Valdas Račkauskas</li>
+						<li>124. Gediminas Berūkštis</li>
+						<li>125. Rimantas Kekys</li>
+						<li>126. Vladas Važnevičius</li>
+						<li>127. Kęstutis Jasevičius</li>
+						<li>128. Irena Leonavičienė</li>
+						<li>129. Mantas Badaukis</li>
+						<li>130. Kęstutis Petkus</li>
+						<li>131. Laimonas Norvilis</li>
+						<li>132. Kęstas Vitkauskas</li>
+						<li>133. Reda Kontarienė</li>
+						<li>134. Jonas Žičkus</li>
+						<li>135. Gediminas Kriovė</li>
+						<li>136. Mindaugas Rekešius</li>
+						<li>137. Darius Radvila</li>
+						<li>138. Miglė Žukauskaitė</li>
+						<li>139. Alvydas Mockus</li>
+						<li>140. Egidijus Vilimas</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js'></script>
+<script src="main.js"></script>
+<script>
+  var config = {
+		apiKey: "AIzaSyBty2ZBR1cNhMS7RDa_IBdw9xb2JdIh-S4",
+    authDomain: "tit-programa.firebaseapp.com",
+    databaseURL: "https://tit-programa.firebaseio.com",
+    storageBucket: "tit-programa.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+</body>
+</html>

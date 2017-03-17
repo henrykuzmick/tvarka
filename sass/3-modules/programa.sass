@@ -1,0 +1,127 @@
+.programaRow
+  background-color: $light-grey
+.programa
+  padding: 0
+  width: 100%
+  display: block
+  margin-bottom: 0
+  .programa-ats
+    width: 100%
+    position: relative
+    cursor: pointer
+    overflow: hidden
+    // height: 33.3333vw
+    background-color: $blue
+    &::before
+      content: ""
+      position: absolute
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      pointer-events: none
+      background-color: rgba(0,0,0,0.65)
+      -webkit-transition: ease-out 0.3s
+      -o-transition: ease-out 0.3s
+      transition: ease-out 0.3s
+    img
+      width: 100%
+    .button
+      top: 50%
+      left: 50%
+      -webkit-transform: translate(-50%, -50%)
+      -ms-transform: translate(-50%, -50%)
+      -o-transform: translate(-50%, -50%)
+      transform: translate(-50%, -50%)
+      position: absolute
+      width: 350px
+      vertical-align: middle
+      @media screen and (max-width: 1120px)
+        font-size: 18px
+        width: 90%
+      @media screen and (max-width: 920px)
+        font-size: 16px
+        width: 90%
+        .ico-pdf
+          display: none
+  .programa-item
+    width: 100%
+    position: relative
+    cursor: pointer
+    overflow: hidden
+    // height: 33.3333vw
+    img
+      width: 100%
+      -webkit-transition: ease-out 0.5s
+      -o-transition: ease-out 0.5s
+      transition: ease-out 0.5s
+    &::after
+      content: ""
+      position: absolute
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      pointer-events: none
+      background-color: rgba(0,0,0,0.65)
+      -webkit-transition: ease-out 0.3s
+      -o-transition: ease-out 0.3s
+      transition: ease-out 0.3s
+    &:hover, &.selected
+      &::after
+        background-color: transparent
+      img
+        transform: scale(1.1)
+  .ttlogo
+    position: relative
+    top: 0
+    left: 0
+    width: 100%
+    height: 33.3333vw
+    z-index: 2
+    background-color: $light-grey
+    background-image: url("images/ttlogo.png")
+    background-position: center
+    background-repeat: no-repeat
+    background-size: contain
+    @media screen and (max-width: $screen-sm-max)
+      height: 50vw
+    h1
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      position: absolute
+      margin-top: 0
+      margin-bottom: 0
+      color: $blue
+      text-transform: uppercase
+  .programa-name
+    position: absolute
+    top: 0
+    z-index: 1
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    border-radius: 100%
+    border: 3px solid white
+    width: 60%
+    height: 60%
+    text-align: center
+    h2
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+      margin-top: 0
+      margin-bottom: 0
+      text-transform: uppercase
+    @media screen and (max-width: $screen-md-max)
+      width: 80%
+      height: 80%
+      h2
+        font-size: 16px
+        line-height: 22px
+    @media screen and (max-width: $screen-xs-max)
+      h2
+        font-size: 12px
+        line-height: 16px

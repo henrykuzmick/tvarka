@@ -1,0 +1,56 @@
+@import "vars"
+@import "utils"
+
+
+@font-face
+  font-family: 'Calibri'
+  font-style: normal
+  font-weight: 400
+  src: local('Calibri'), local('Calibri'), url('fonts/Calibri.woff') format('woff')
+@font-face
+  font-family: 'Calibri'
+  font-style: normal
+  font-weight: 400
+  src: local('Calibri'), local('Calibri'), url('fonts/Calibri.ttf') format('ttf')
+@font-face
+  font-family: 'Calibri'
+  font-style: normal
+  font-weight: 600
+  src: local('Calibri'), local('Calibri'), url('fonts/CalibriBold.woff') format('woff')
+@font-face
+  font-family: 'Calibri'
+  font-style: normal
+  font-weight: 600
+  src: local('Calibri'), local('Calibri'), url('fonts/CalibriBold.ttf') format('ttf')
+
+body
+  padding: 0 !important
+
+h1
+  color: white
+  font-size: 32px
+  font-weight: 400
+  @media screen and (max-width: $screen-sm-max)
+    font-size: 20px
+h2
+  color: white
+  font-size: 21px
+  font-weight: 700
+  line-height: 25px
+  @media screen and (max-width: $screen-sm-max)
+    font-size: 16px
+    line-height: 20px
+h3
+  line-height: 20px
+  color: $blue
+  font-size: 21px
+  font-weight: 500
+p
+  color: black
+  font-size: 14px
+  font-weight: 400
+  line-height: 20px
+.blue
+  color: $blue
+*
+  font-family: "Calibri", "Arial", "sans-serif" !important

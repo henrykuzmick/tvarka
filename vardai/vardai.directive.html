@@ -1,0 +1,14 @@
+<div ng-controller="vardaiCtrl as vardai">
+  <input type="text" ng-model="search" class="vardaisearch" placeholder="Įveskite kandidato vardą, pavardę arba apygardos pavadinimą">
+  <ul class="vardai clearfix">
+    <li class="vardai-item" ng-repeat="item in vardai.vardai | orderBy: 'id' | filter: search" vardai-item aprasymas="{{ item.biografija }}" fb="{{ item.facebook }}">
+      <div class="picture">
+        <img src="{{ item.foto}} "/>
+      </div>
+      <div class="vardai-name">
+        <h3>{{ item.vardas }}</h3>
+        <p>{{ item.apygarda }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
